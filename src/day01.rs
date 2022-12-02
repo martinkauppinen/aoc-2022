@@ -4,13 +4,15 @@ type InventoryTotal = usize;
 
 #[aoc_generator(day01)]
 pub fn input_generator(input: &str) -> Vec<InventoryTotal> {
-    let lines: Vec<&str> = input.lines().collect();
-    let mut inventories = Vec::new();
-
-    for group in lines.split(|s| s.is_empty()) {
-        inventories.push(group.iter().map(|s| s.parse::<usize>().unwrap()).sum());
-    }
-    inventories
+    input
+        .split("\n\n")
+        .map(|group| {
+            group
+                .lines()
+                .map(|line| line.parse::<usize>().unwrap())
+                .sum()
+        })
+        .collect()
 }
 
 #[aoc(day01, part1)]
