@@ -1,5 +1,3 @@
-use std::collections::HashSet;
-
 use grid::{grid, Grid};
 
 type Trees = Grid<u8>;
@@ -18,29 +16,29 @@ fn input_generator(input: &str) -> Trees {
 }
 
 fn visible_trees(direction: &mut dyn Iterator<Item = &u8>) -> Vec<usize> {
-    let mut seen = Vec::new();
     let mut visible = Vec::new();
+    let mut tallest = -1;
     for (i, tree) in direction.enumerate() {
-        if seen.iter().all(|t: &u8| *t < *tree) {
+        if tallest < *tree as i8 {
+            tallest = *tree as i8;
             visible.push(i);
         }
-        seen.push(*tree);
     }
     visible
 }
 
 #[aoc(day08, part1)]
 fn solve_part1(trees: &Trees) -> usize {
-    let mut visible_coords: HashSet<(usize, usize)> = HashSet::new();
+    let mut seen = Grid::init(trees.rows(), trees.cols(), 0);
 
     for row in 0..trees.rows() {
         let forward = visible_trees(&mut trees.iter_row(row));
         let reverse = visible_trees(&mut trees.iter_row(row).rev());
         for col in forward {
-            visible_coords.insert((row, col));
+            *seen.get_mut(row, col).unwrap() = 1;
         }
         for col in reverse {
-            visible_coords.insert((row, trees.cols() - 1 - col));
+            *seen.get_mut(row, trees.cols() - 1 - col).unwrap() = 1;
         }
     }
 
@@ -48,26 +46,26 @@ fn solve_part1(trees: &Trees) -> usize {
         let forward = visible_trees(&mut trees.iter_col(col));
         let reverse = visible_trees(&mut trees.iter_col(col).rev());
         for row in forward {
-            visible_coords.insert((row, col));
+            *seen.get_mut(row, col).unwrap() = 1;
         }
         for row in reverse {
-            visible_coords.insert((trees.rows() - 1 - row, col));
+            *seen.get_mut(trees.rows() - 1 - row, col).unwrap() = 1;
         }
     }
 
-    visible_coords.len()
+    seen.iter().sum()
 }
 
 fn viewing_direction(direction: &mut dyn Iterator<Item = &u8>) -> usize {
     let height = direction.next().unwrap();
-    let mut v = 0;
+    let mut viewing_distance = 0;
     for tree in direction {
-        v += 1;
+        viewing_distance += 1;
         if tree >= height {
             break;
         }
     }
-    v
+    viewing_distance
 }
 
 #[aoc(day08, part2)]
