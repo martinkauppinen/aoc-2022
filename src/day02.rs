@@ -124,11 +124,7 @@ pub fn solve_part2(rounds: &[ForcedRound]) -> usize {
 mod tests {
     use super::*;
 
-    const INPUT: &str = "\
-A Y
-B X
-C Z
-";
+    const INPUT: &str = include_str!("../examples/day02/example.txt");
 
     #[test]
     fn part1() {

@@ -57,14 +57,7 @@ pub fn solve_part2(assignments: &[Assignment]) -> usize {
 mod tests {
     use super::*;
 
-    const INPUT: &str = "\
-2-4,6-8
-2-3,4-5
-5-7,7-9
-2-8,3-7
-6-6,4-6
-2-6,4-8
-";
+    const INPUT: &str = include_str!("../examples/day04/example.txt");
 
     #[test]
     fn part1() {

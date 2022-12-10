@@ -26,21 +26,21 @@ fn solve_part2(input: &str) -> usize {
 mod tests {
     use super::*;
 
+    const INPUT: &str = include_str!("../examples/day06/example.txt");
+
     #[test]
     fn part1() {
-        assert_eq!(solve_part1("mjqjpqmgbljsphdztnvjfqwrcgsmlb"), 7);
-        assert_eq!(solve_part1("bvwbjplbgvbhsrlpgdmjqwftvncz"), 5);
-        assert_eq!(solve_part1("nppdvjthqldpwncqszvftbrmjlhg"), 6);
-        assert_eq!(solve_part1("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"), 10);
-        assert_eq!(solve_part1("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"), 11);
+        let answers = [7, 5, 6, 10, 11];
+        for (i, line) in INPUT.lines().enumerate() {
+            assert_eq!(solve_part1(line), answers[i]);
+        }
     }
 
     #[test]
     fn part2() {
-        assert_eq!(solve_part2("mjqjpqmgbljsphdztnvjfqwrcgsmlb"), 19);
-        assert_eq!(solve_part2("bvwbjplbgvbhsrlpgdmjqwftvncz"), 23);
-        assert_eq!(solve_part2("nppdvjthqldpwncqszvftbrmjlhg"), 23);
-        assert_eq!(solve_part2("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"), 29);
-        assert_eq!(solve_part2("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"), 26);
+        let answers = [19, 23, 23, 29, 26];
+        for (i, line) in INPUT.lines().enumerate() {
+            assert_eq!(solve_part2(line), answers[i]);
+        }
     }
 }

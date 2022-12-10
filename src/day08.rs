@@ -92,12 +92,7 @@ fn solve_part2(trees: &Trees) -> usize {
 mod tests {
     use super::*;
 
-    const INPUT: &str = "\
-30373
-25512
-65332
-33549
-35390";
+    const INPUT: &str = include_str!("../examples/day08/example.txt");
 
     #[test]
     fn part1() {

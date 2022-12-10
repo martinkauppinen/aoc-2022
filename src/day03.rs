@@ -45,14 +45,7 @@ pub fn solve_part2(input: &str) -> usize {
 mod tests {
     use super::*;
 
-    const INPUT: &str = "\
-vJrwpWtwJgWrhcsFMMfFFhFp
-jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
-PmmdzqPrVvPwwTWBwg
-wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
-ttgJtRGJQctTZtZT
-CrZsJsPPZsGzwwsLwLmpwMDw
-";
+    const INPUT: &str = include_str!("../examples/day03/example.txt");
 
     #[test]
     fn part1() {
