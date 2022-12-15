@@ -147,9 +147,7 @@ fn solve_part1(sensors: &[Sensor]) -> isize {
 
     merged_ranges
         .iter()
-        .map(|r| {
-            **r.end() - **r.start() + 1
-        })
+        .map(|r| **r.end() - **r.start() + 1)
         .sum::<isize>()
         - beacons_on_row
 }
